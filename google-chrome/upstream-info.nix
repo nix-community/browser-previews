@@ -16,6 +16,6 @@
       version = "119.0.6045.105";
     };
     hash_deb_amd64 = "sha256-WLTTFMUvtBHvvegDFpZ+7Eht9StMyleaqXEBhPhgPTs=";
-    version = "119.0.6045.104";
+    version = "119.0.6045.105";
   };
 }
