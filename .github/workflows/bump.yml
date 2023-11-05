@@ -30,6 +30,8 @@ jobs:
           git config --global user.name 'BumpBot'
           git config --global user.email 'r-k-b@users.noreply.github.com'
       - name: update google-chrome
-        run: ./google-chrome/update.py --commit
+        run: |
+          nix develop --command \
+            ./google-chrome/update.py --commit
       - name: push to origin
         run: git push
