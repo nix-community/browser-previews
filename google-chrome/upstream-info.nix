@@ -1,11 +1,11 @@
 {
   beta = {
     hash_deb_amd64 = "sha256-HV2JqmpFuLqSEHbZrrG1A5t1PhuOEhIDkYEy9kxEwg0=";
-    version = "120.0.6099.5";
+    version = "120.0.6099.4";
   };
   dev = {
     hash_deb_amd64 = "sha256-GrQeNKnnDO6l9XVyCvJ8D0Q8cdWxDVUrnkb7rgpgyEc=";
-    version = "120.0.6090.0";
+    version = "120.0.6089.0";
   };
   stable = {
     chromedriver = {
@@ -16,6 +16,6 @@
       version = "119.0.6045.105";
     };
     hash_deb_amd64 = "sha256-WLTTFMUvtBHvvegDFpZ+7Eht9StMyleaqXEBhPhgPTs=";
-    version = "119.0.6045.105";
+    version = "119.0.6045.104";
   };
 }
