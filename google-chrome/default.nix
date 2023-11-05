@@ -129,8 +129,8 @@ in stdenv.mkDerivation {
   # chromeSrc
   src = let
     # Use the latest stable Chrome version if necessary:
-    version = upstream-info.stable.version;
-    hash = upstream-info.stable.hash_deb_amd64;
+    version = upstream-info.${channel}.version;
+    hash = upstream-info.${channel}.hash_deb_amd64;
   in fetchurl {
     urls = map (repo: "${repo}/${pkgName}/${pkgName}_${version}-1_amd64.deb") [
       "https://dl.google.com/linux/chrome/deb/pool/main/g"
