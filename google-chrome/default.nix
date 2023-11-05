@@ -1,3 +1,4 @@
+# Based on: https://github.com/NixOS/nixpkgs/blob/2c106c1e7c0794927c3b889de51e3c2cdd9130ba/pkgs/applications/networking/browsers/google-chrome/default.nix
 { fetchurl, lib, stdenv, patchelf, makeWrapper
 
 # Linked dynamic libraries.
@@ -222,10 +223,6 @@ in stdenv.mkDerivation {
     homepage = "https://www.google.com/chrome/browser/";
     license = licenses.unfree;
     sourceProvenance = with sourceTypes; [ binaryNativeCode ];
-    maintainers = with maintainers; [ primeos ];
-    # Note from primeos: By updating Chromium I also update Google Chrome and
-    # will try to merge PRs and respond to issues but I'm not actually using
-    # Google Chrome.
     platforms = [ "x86_64-linux" ];
     mainProgram = if (channel == "dev") then
       "google-chrome-unstable"
