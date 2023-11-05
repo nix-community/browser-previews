@@ -1,0 +1,35 @@
+on:
+  push:
+  schedule:
+    - # ~6am AEST
+    - cron: "19 19 * * *"
+jobs:
+  bump_versions:
+    name: Build and Test Hippo and TCM, via Nix
+    runs-on:
+      ubuntu-22.04
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+      - name: Install Nix via Cachix
+        if: env.using_self_hosted_runner_with_nix != 'true'
+        uses: cachix/install-nix-action@v18
+        with:
+          install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
+        uses: DeterminateSystems/magic-nix-cache-action@v1
+      - name: pull dev environment
+        run: |
+          nix develop --command \
+            echo dev environment ready
+      - name: prep git
+        run: |
+          set -e
+          git fetch
+          git checkout main
+      - name: update google-chrome
+        run: ./google-chrome/update.py --commit
+      - name: push to origin
+        run: git push origin

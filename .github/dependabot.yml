@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      timezone: Australia/Brisbane
+    open-pull-requests-limit: 3
+    reviewers:
+      - r-k-b
