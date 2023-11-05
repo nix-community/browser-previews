@@ -19,7 +19,7 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
-        uses: DeterminateSystems/magic-nix-cache-action@v1
+        uses: DeterminateSystems/magic-nix-cache-action@v2
       - name: pull dev environment
         run: |
           nix develop --command \
