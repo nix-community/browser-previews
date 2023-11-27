@@ -2,11 +2,15 @@
   description = "fresh browser previews (dev, beta)";
 
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
     nixpkgs.url = "nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/x86_64-linux";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
