@@ -18,6 +18,10 @@ jobs:
           install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
         uses: DeterminateSystems/magic-nix-cache-action@v2
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@v2
+        with:
+          fail-mode: false
       - name: pull dev environment
         run: |
           nix develop --command \
