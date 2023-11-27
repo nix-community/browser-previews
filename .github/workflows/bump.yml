@@ -37,5 +37,10 @@ jobs:
         run: |
           nix develop --command \
             ./google-chrome/update.py --commit
+      - name: check build outputs
+        env:
+          NIXPKGS_ALLOW_UNFREE: "1"
+        run: |
+          nix flake check --impure
       - name: push to origin
         run: git push

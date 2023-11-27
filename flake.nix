@@ -13,6 +13,11 @@
         google-chrome = channel:
           pkgs.callPackage ./google-chrome { inherit channel; };
       in {
+        checks = {
+          google-chrome = google-chrome "stable";
+          google-chrome-beta = google-chrome "beta";
+          google-chrome-dev = google-chrome "dev";
+        };
         devShells = {
           default = pkgs.mkShell {
             name = "fresh-browser-previews-shell";
