@@ -13,16 +13,18 @@
         google-chrome = channel:
           pkgs.callPackage ./google-chrome { inherit channel; };
       in {
-        devShell = pkgs.mkShell {
-          name = "fresh-browser-previews-shell";
+        devShells = {
+          default = pkgs.mkShell {
+            name = "fresh-browser-previews-shell";
 
-          buildInputs = with pkgs; [
-            nix
-            nix-prefetch-git
-            nixfmt
-            (python3.withPackages
-              (p3pkgs: [ p3pkgs.feedparser p3pkgs.requests ]))
-          ];
+            buildInputs = with pkgs; [
+              nix
+              nix-prefetch-git
+              nixfmt
+              (python3.withPackages
+                (p3pkgs: [ p3pkgs.feedparser p3pkgs.requests ]))
+            ];
+          };
         };
         packages = {
           google-chrome = google-chrome "stable";
