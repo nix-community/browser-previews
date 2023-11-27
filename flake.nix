@@ -27,6 +27,7 @@
           };
         };
         packages = {
+          default = google-chrome "stable";
           google-chrome = google-chrome "stable";
           google-chrome-beta = google-chrome "beta";
           google-chrome-dev = google-chrome "dev";
