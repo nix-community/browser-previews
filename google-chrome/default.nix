@@ -210,8 +210,8 @@ in stdenv.mkDerivation {
       --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}" \
       --add-flags ${lib.escapeShellArg commandLineArgs}
 
-    if [ $dist = "unstable" ]; then
-      # nacl_helper is missing in google-chrome-dev...?
+    if [[ "$dist" =~ ^(unstable|beta)$ ]]; then
+      # nacl_helper is missing in google-chrome-dev and google-chrome-beta...?
       for elf in $out/share/google/$appname/{chrome,chrome-sandbox,${crashpadHandlerBinary}}; do
         patchelf --set-rpath $rpath $elf
         patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $elf
