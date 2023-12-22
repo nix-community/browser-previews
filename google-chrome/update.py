@@ -204,6 +204,7 @@ def main():
         for channel_name in sorted_channels.keys():
             version_old = last_channels[channel_name]['version']
             version_new = sorted_channels[channel_name]['version']
+            print(f'Creating commits using "Old" version ({version_old}) and "New" version ({version_new})...')
             if LooseVersion(version_old) < LooseVersion(version_new):
                 last_channels[channel_name] = sorted_channels[channel_name]
                 save_dict_as_nix(PIN_PATH, last_channels)
