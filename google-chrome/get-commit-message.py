@@ -17,27 +17,43 @@ import requests
 from builtins import len, list, print
 
 
-feed = feedparser.parse('https://chromereleases.googleblog.com/feeds/posts/default')
+releasesBlogFeed = 'https://chromereleases.googleblog.com/feeds/posts/default'
+
+
+def stderr(s):
+    sys.stderr.write(f'{s}\n')
+
+
+stderr(f'Fetching feed from {releasesBlogFeed}...')
+feed = feedparser.parse(releasesBlogFeed)
+stderr(f'fetched {len(feed.entries)} articles.')
 html_tags = re.compile(r'<[^>]+>')
 target_version = sys.argv[1] if len(sys.argv) == 2 else None
 
+stderr(f'Looking for posts mentioning target version "{target_version}"...')
+
 for entry in feed.entries:
+    stderr(f'\nChecking entry link {entry.link}...')
     url = requests.get(entry.link).url.split('?')[0]
     if entry.title != 'Stable Channel Update for Desktop':
         if target_version and entry.title == '':
             # Workaround for a special case (Chrome Releases bug?):
             if 'the-stable-channel-has-been-updated-to' not in url:
+                stderr('Not the "blank title" special case; skipping.')
                 continue
         else:
+            stderr('Not "Stable Channel Update for Desktop"; skipping.')
             continue
     content = entry.content[0].value
     content = html_tags.sub('', content)  # Remove any HTML tags
     if re.search(r'Linux', content) is None:
+        stderr('No mention of Linux; skipping.')
         continue
     # print(url)  # For debugging purposes
     version = re.search(r'\d+(\.\d+){3}', content).group(0)
     if target_version:
         if version != target_version:
+            stderr(f'Entry version "{version} does not match target; skipping." ')
             continue
     else:
         print('chromium: TODO -> ' + version + '\n')
@@ -53,5 +69,5 @@ for entry in feed.entries:
         print("\nCVEs:\n" + '\n'.join(textwrap.wrap(cve_string, width=72)))
     sys.exit(0)  # We only care about the most recent stable channel update
 
-print("Error: No match.")
+stderr("Error: No match.")
 sys.exit(1)
