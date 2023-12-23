@@ -14,6 +14,8 @@ from collections import OrderedDict
 
 import feedparser
 import requests
+from builtins import len, list, print
+
 
 feed = feedparser.parse('https://chromereleases.googleblog.com/feeds/posts/default')
 html_tags = re.compile(r'<[^>]+>')
