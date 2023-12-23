@@ -24,7 +24,7 @@ def stderr(s):
     sys.stderr.write(f'{s}\n')
 
 
-stderr(f'Fetching feed from {releasesBlogFeed}...')
+stderr(f'Fetching feed from <{releasesBlogFeed}>...')
 feed = feedparser.parse(releasesBlogFeed)
 stderr(f'fetched {len(feed.entries)} articles.')
 html_tags = re.compile(r'<[^>]+>')
@@ -33,7 +33,7 @@ target_version = sys.argv[1] if len(sys.argv) == 2 else None
 stderr(f'Looking for posts mentioning target version "{target_version}"...')
 
 for entry in feed.entries:
-    stderr(f'\nChecking entry link {entry.link}...')
+    stderr(f'\nChecking entry link <{entry.link}>...')
     url = requests.get(entry.link).url.split('?')[0]
     if entry.title != 'Stable Channel Update for Desktop':
         if target_version and entry.title == '':
