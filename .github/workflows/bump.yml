@@ -8,6 +8,9 @@ jobs:
     name: Bump Browser Versions
     runs-on:
       ubuntu-22.04
+    env:
+      # https://stackoverflow.com/a/71158878/2014893
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: git checkout
         uses: actions/checkout@v4
@@ -17,7 +20,7 @@ jobs:
         with:
           install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
-        uses: DeterminateSystems/magic-nix-cache-action@v2
+        uses: DeterminateSystems/magic-nix-cache-action@v3
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@v5
         with:
@@ -30,13 +33,17 @@ jobs:
         run: |
           set -e
           git fetch
-          git checkout main
           git config --global user.name 'BumpBot'
           git config --global user.email 'r-k-b@users.noreply.github.com'
       - name: update google-chrome
         run: |
-          nix develop --command \
-            ./google-chrome/update.py --commit
+          echo branch_name is "$BRANCH_NAME"
+          if [[ "$BRANCH_NAME" == "main" ]]; then
+            nix develop --command \
+              ./google-chrome/update.py --commit
+          else
+            echo "not on branch 'main'; skipping update.py."
+          fi
       - name: check build outputs
         env:
           NIXPKGS_ALLOW_UNFREE: "1"

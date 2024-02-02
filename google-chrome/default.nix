@@ -210,18 +210,10 @@ in stdenv.mkDerivation {
       --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations}}" \
       --add-flags ${lib.escapeShellArg commandLineArgs}
 
-    if [[ "$dist" =~ ^(unstable|beta)$ ]]; then
-      # nacl_helper is missing in google-chrome-dev and google-chrome-beta...?
-      for elf in $out/share/google/$appname/{chrome,chrome-sandbox,${crashpadHandlerBinary}}; do
-        patchelf --set-rpath $rpath $elf
-        patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $elf
-      done
-    else
-      for elf in $out/share/google/$appname/{chrome,chrome-sandbox,${crashpadHandlerBinary},nacl_helper}; do
-        patchelf --set-rpath $rpath $elf
-        patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $elf
-      done
-    fi
+    for elf in $out/share/google/$appname/{chrome,chrome-sandbox,${crashpadHandlerBinary}}; do
+      patchelf --set-rpath $rpath $elf
+      patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $elf
+    done
 
     runHook postInstall
   '';
