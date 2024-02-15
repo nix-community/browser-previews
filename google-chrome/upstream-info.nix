@@ -4,8 +4,8 @@
     version = "122.0.6261.39";
   };
   dev = {
-    hash_deb_amd64 = "sha256-AtY1Ihe0p3xIhD1WdczbyqoLJPjx3ALycZmsvPCh/9o=";
-    version = "123.0.6286.0";
+    hash_deb_amd64 = "sha256-KGhnukdhkGD8uFBpJs/MWHBLaO6qLFECoGvMUkqyeLg=";
+    version = "123.0.6300.3";
   };
   stable = {
     chromedriver = {
