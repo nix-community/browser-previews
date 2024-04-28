@@ -4,18 +4,18 @@
     version = "125.0.6422.14";
   };
   dev = {
-    hash_deb_amd64 = "sha256-wRjR0Batmjxh3Cmkwsxx0G6c8554bqfRo5GNj7KEZAc=";
-    version = "126.0.6423.2";
+    hash_deb_amd64 = "sha256-a/2+IPm237fH17gUfqpzS0Yf8lkMXj270Ao4Usr0SKo=";
+    version = "126.0.6439.0";
   };
   stable = {
     chromedriver = {
-      hash_darwin = "sha256-wVLNwIlol6rK3Jf+JUNw2vbz/yVVEQ1lmKsCy1gfBvM=";
+      hash_darwin = "sha256-RGOChK4JhrFUgVY/5YqgE0KFLRl6a7X2llw1ZfhiPXY=";
       hash_darwin_aarch64 =
-        "sha256-E6VUi+HAP+eE7OpEI3DrzJ/1hABjIAu4XbXSmlfV7e4=";
-      hash_linux = "sha256-xnCiyNYAwmB2cfz7k4RPQVwcae3QSnVxRBje3yvAhI8=";
-      version = "124.0.6367.78";
+        "sha256-K1jFXmWtXrS43UJg2mQ39Kae6tv7E9Fxm6LUWg+uwLo=";
+      hash_linux = "sha256-xwaRNh7sllyNaq8+aLAZDQ3uDg06cu3KYqc02LWPSyw=";
+      version = "124.0.6367.91";
     };
-    hash_deb_amd64 = "sha256-CpjdZvm7H9Dc2MwvDhvegguG8ym8W2rLfGTUNF/ZoYY=";
-    version = "124.0.6367.78";
+    hash_deb_amd64 = "sha256-CyCbZQ5ce8WLTt2JVSqbDkLDboE4BloiZ8pJff3dmSY=";
+    version = "124.0.6367.91";
   };
 }
