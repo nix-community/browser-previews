@@ -9,9 +9,7 @@ and were dropped in [NixOS/nixpkgs#261870](https://github.com/NixOS/nixpkgs/pull
 
 ## Available packages
 
-- `google-chrome`
-- `google-chrome-beta`
-- `google-chrome-dev`
+Run `nix flake show github:r-k-b/browser-previews` for the up-to-date list.
 
 ## How?
 
