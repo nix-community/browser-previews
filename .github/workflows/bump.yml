@@ -1,13 +1,13 @@
 on:
   push:
   schedule:
-    - # ~6am AEST
+    # ~6am AEST
     - cron: "19 19 * * *"
 jobs:
   bump_versions:
     name: Bump Browser Versions
     runs-on:
-      ubuntu-22.04
+      ubuntu-latest
     env:
       # https://stackoverflow.com/a/71158878/2014893
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
@@ -18,7 +18,7 @@ jobs:
         if: env.using_self_hosted_runner_with_nix != 'true'
         uses: cachix/install-nix-action@v26
         with:
-          install_url: "https://releases.nixos.org/nix/nix-2.18.1/install"
+          install_url: "https://releases.nixos.org/nix/nix-2.21.0/install"
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
         uses: DeterminateSystems/magic-nix-cache-action@v4
       - name: Check Nix flake inputs

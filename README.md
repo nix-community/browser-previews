@@ -9,24 +9,24 @@ and were dropped in [NixOS/nixpkgs#261870](https://github.com/NixOS/nixpkgs/pull
 
 ## Available packages
 
-Run `nix flake show github:r-k-b/browser-previews` for the up-to-date list.
+Run `nix flake show github:nix-community/browser-previews` for the up-to-date list.
 
 ## How?
 
 ### To directly run latest `google-chrome` from this flake
 
 ```bash
-NIXPKGS_ALLOW_UNFREE=1 nix run github:r-k-b/browser-previews#google-chrome --impure
+NIXPKGS_ALLOW_UNFREE=1 nix run github:nix-community/browser-previews#google-chrome --impure
 ```
 
 Likewise for google-chrome-beta or google-chrome-dev:
 
 ```bash
-NIXPKGS_ALLOW_UNFREE=1 nix run github:r-k-b/browser-previews#google-chrome-beta --impure
+NIXPKGS_ALLOW_UNFREE=1 nix run github:nix-community/browser-previews#google-chrome-beta --impure
 ```
 
 ```bash
-NIXPKGS_ALLOW_UNFREE=1 nix run github:r-k-b/browser-previews#google-chrome-dev --impure
+NIXPKGS_ALLOW_UNFREE=1 nix run github:nix-community/browser-previews#google-chrome-dev --impure
 ```
 
 ### To install a package from this flake
@@ -34,7 +34,7 @@ NIXPKGS_ALLOW_UNFREE=1 nix run github:r-k-b/browser-previews#google-chrome-dev -
 - First you must add it as a input to your `flake.nix`:
 
 ```nix
-inputs.browser-previews = { url = "github:r-k-b/browser-previews";
+inputs.browser-previews = { url = "github:nix-community/browser-previews";
                             inputs.nixpkgs.follows = "nixpkgs"; };
 ```
 
