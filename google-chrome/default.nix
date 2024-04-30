@@ -1,47 +1,100 @@
 # Based on: https://github.com/NixOS/nixpkgs/blob/2c106c1e7c0794927c3b889de51e3c2cdd9130ba/pkgs/applications/networking/browsers/google-chrome/default.nix
-{ fetchurl, lib, stdenv, patchelf, makeWrapper
+{
+  fetchurl,
+  lib,
+  stdenv,
+  patchelf,
+  makeWrapper,
 
-# Linked dynamic libraries.
-, glib, fontconfig, freetype, pango, cairo, libX11, libXi, atk, nss, nspr
-, libXcursor, libXext, libXfixes, libXrender, libXScrnSaver, libXcomposite
-, libxcb, alsa-lib, libXdamage, libXtst, libXrandr, libxshmfence, expat, cups
-, dbus, gtk3, gtk4, gdk-pixbuf, gcc-unwrapped, at-spi2-atk, at-spi2-core
-, libkrb5, libdrm, libglvnd, mesa, libxkbcommon, pipewire
-, wayland # ozone/wayland
+  # Linked dynamic libraries.
+  glib,
+  fontconfig,
+  freetype,
+  pango,
+  cairo,
+  libX11,
+  libXi,
+  atk,
+  nss,
+  nspr,
+  libXcursor,
+  libXext,
+  libXfixes,
+  libXrender,
+  libXScrnSaver,
+  libXcomposite,
+  libxcb,
+  alsa-lib,
+  libXdamage,
+  libXtst,
+  libXrandr,
+  libxshmfence,
+  expat,
+  cups,
+  dbus,
+  gtk3,
+  gtk4,
+  gdk-pixbuf,
+  gcc-unwrapped,
+  at-spi2-atk,
+  at-spi2-core,
+  libkrb5,
+  libdrm,
+  libglvnd,
+  mesa,
+  libxkbcommon,
+  pipewire,
+  wayland, # ozone/wayland
 
-# Command line programs
-, coreutils
+  # Command line programs
+  coreutils,
 
-# command line arguments which are always set e.g "--disable-gpu"
-, commandLineArgs ? ""
+  # command line arguments which are always set e.g "--disable-gpu"
+  commandLineArgs ? "",
 
   # Will crash without.
-, systemd
+  systemd,
 
-# Loaded at runtime.
-, libexif, pciutils
+  # Loaded at runtime.
+  libexif,
+  pciutils,
 
-# Additional dependencies according to other distros.
-## Ubuntu
-, liberation_ttf, curl, util-linux, xdg-utils, wget
-## Arch Linux.
-, flac, harfbuzz, icu, libpng, libopus, snappy, speechd
-## Gentoo
-, bzip2, libcap
+  # Additional dependencies according to other distros.
+  ## Ubuntu
+  liberation_ttf,
+  curl,
+  util-linux,
+  xdg-utils,
+  wget,
+  ## Arch Linux.
+  flac,
+  harfbuzz,
+  icu,
+  libpng,
+  libopus,
+  snappy,
+  speechd,
+  ## Gentoo
+  bzip2,
+  libcap,
 
-# Which distribution channel to use.
-, channel ? "stable"
+  # Which distribution channel to use.
+  channel ? "stable",
 
   # Necessary for USB audio devices.
-, pulseSupport ? true, libpulseaudio
+  pulseSupport ? true,
+  libpulseaudio,
 
-, gsettings-desktop-schemas, gnome
+  gsettings-desktop-schemas,
+  gnome,
 
-# For video acceleration via VA-API (--enable-features=VaapiVideoDecoder)
-, libvaSupport ? true, libva
+  # For video acceleration via VA-API (--enable-features=VaapiVideoDecoder)
+  libvaSupport ? true,
+  libva,
 
-# For Vulkan support (--enable-features=Vulkan)
-, addOpenGLRunpath }:
+  # For Vulkan support (--enable-features=Vulkan)
+  addOpenGLRunpath,
+}:
 
 let
   opusWithCustomModes = libopus.override { withCustomModes = true; };
@@ -50,98 +103,108 @@ let
 
   version = upstream-info.${channel}.version;
 
-  deps = [
-    glib
-    fontconfig
-    freetype
-    pango
-    cairo
-    libX11
-    libXi
-    atk
-    nss
-    nspr
-    libXcursor
-    libXext
-    libXfixes
-    libXrender
-    libXScrnSaver
-    libXcomposite
-    libxcb
-    alsa-lib
-    libXdamage
-    libXtst
-    libXrandr
-    libxshmfence
-    expat
-    cups
-    dbus
-    gdk-pixbuf
-    gcc-unwrapped.lib
-    systemd
-    libexif
-    pciutils
-    liberation_ttf
-    curl
-    util-linux
-    wget
-    flac
-    harfbuzz
-    icu
-    libpng
-    opusWithCustomModes
-    snappy
-    speechd
-    bzip2
-    libcap
-    at-spi2-atk
-    at-spi2-core
-    libkrb5
-    libdrm
-    libglvnd
-    mesa
-    coreutils
-    libxkbcommon
-    pipewire
-    wayland
-  ] ++ lib.optional pulseSupport libpulseaudio
-    ++ lib.optional libvaSupport libva ++ [ gtk3 gtk4 ];
+  deps =
+    [
+      glib
+      fontconfig
+      freetype
+      pango
+      cairo
+      libX11
+      libXi
+      atk
+      nss
+      nspr
+      libXcursor
+      libXext
+      libXfixes
+      libXrender
+      libXScrnSaver
+      libXcomposite
+      libxcb
+      alsa-lib
+      libXdamage
+      libXtst
+      libXrandr
+      libxshmfence
+      expat
+      cups
+      dbus
+      gdk-pixbuf
+      gcc-unwrapped.lib
+      systemd
+      libexif
+      pciutils
+      liberation_ttf
+      curl
+      util-linux
+      wget
+      flac
+      harfbuzz
+      icu
+      libpng
+      opusWithCustomModes
+      snappy
+      speechd
+      bzip2
+      libcap
+      at-spi2-atk
+      at-spi2-core
+      libkrb5
+      libdrm
+      libglvnd
+      mesa
+      coreutils
+      libxkbcommon
+      pipewire
+      wayland
+    ]
+    ++ lib.optional pulseSupport libpulseaudio
+    ++ lib.optional libvaSupport libva
+    ++ [
+      gtk3
+      gtk4
+    ];
 
   suffix = lib.optionalString (channel != "stable") "-${channel}";
 
-  crashpadHandlerBinary = if lib.versionAtLeast version "94" then
-    "chrome_crashpad_handler"
-  else
-    "crashpad_handler";
+  crashpadHandlerBinary =
+    if lib.versionAtLeast version "94" then "chrome_crashpad_handler" else "crashpad_handler";
 
-  pkgSuffix = if channel == "dev" then
-    "unstable"
-  else
-    (if channel == "ungoogled-chromium" then "stable" else channel);
+  pkgSuffix =
+    if channel == "dev" then
+      "unstable"
+    else
+      (if channel == "ungoogled-chromium" then "stable" else channel);
 
   pkgName = "google-chrome-${pkgSuffix}";
-
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   inherit version;
 
   name = "google-chrome${suffix}-${version}";
 
   # chromeSrc
-  src = let
-    # Use the latest stable Chrome version if necessary:
-    version = upstream-info.${channel}.version;
-    hash = upstream-info.${channel}.hash_deb_amd64;
-  in fetchurl {
-    urls = map (repo: "${repo}/${pkgName}/${pkgName}_${version}-1_amd64.deb") [
-      "https://dl.google.com/linux/chrome/deb/pool/main/g"
-      "http://95.31.35.30/chrome/pool/main/g"
-      "http://mirror.pcbeta.com/google/chrome/deb/pool/main/g"
-      "http://repo.fdzh.org/chrome/deb/pool/main/g"
-    ];
-    inherit hash;
-  };
+  src =
+    let
+      # Use the latest stable Chrome version if necessary:
+      version = upstream-info.${channel}.version;
+      hash = upstream-info.${channel}.hash_deb_amd64;
+    in
+    fetchurl {
+      urls = map (repo: "${repo}/${pkgName}/${pkgName}_${version}-1_amd64.deb") [
+        "https://dl.google.com/linux/chrome/deb/pool/main/g"
+        "http://95.31.35.30/chrome/pool/main/g"
+        "http://mirror.pcbeta.com/google/chrome/deb/pool/main/g"
+        "http://repo.fdzh.org/chrome/deb/pool/main/g"
+      ];
+      inherit hash;
+    };
 
-  nativeBuildInputs = [ patchelf makeWrapper ];
+  nativeBuildInputs = [
+    patchelf
+    makeWrapper
+  ];
   buildInputs = [
     # needed for GSETTINGS_SCHEMAS_PATH
     gsettings-desktop-schemas
@@ -157,8 +220,7 @@ in stdenv.mkDerivation {
     tar xf data.tar.xz
   '';
 
-  rpath = lib.makeLibraryPath deps + ":"
-    + lib.makeSearchPathOutput "lib" "lib64" deps;
+  rpath = lib.makeLibraryPath deps + ":" + lib.makeSearchPathOutput "lib" "lib64" deps;
   binpath = lib.makeBinPath deps;
 
   installPhase = ''
@@ -218,15 +280,12 @@ in stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "A freeware web browser developed by Google";
     homepage = "https://www.google.com/chrome/browser/";
-    license = licenses.unfree;
-    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
+    license = lib.licenses.unfree;
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
     platforms = [ "x86_64-linux" ];
-    mainProgram = if (channel == "dev") then
-      "google-chrome-unstable"
-    else
-      "google-chrome-${channel}";
+    mainProgram = if (channel == "dev") then "google-chrome-unstable" else "google-chrome-${channel}";
   };
 }
