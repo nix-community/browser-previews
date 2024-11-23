@@ -86,7 +86,7 @@
   libpulseaudio,
 
   gsettings-desktop-schemas,
-  gnome,
+  adwaita-icon-theme,
 
   # For video acceleration via VA-API (--enable-features=VaapiVideoDecoder)
   libvaSupport ? true,
@@ -212,7 +212,7 @@ stdenv.mkDerivation {
     gtk3
 
     # needed for XDG_ICON_DIRS
-    gnome.adwaita-icon-theme
+    adwaita-icon-theme
   ];
 
   unpackPhase = ''
