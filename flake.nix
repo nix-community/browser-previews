@@ -43,6 +43,7 @@
               (python3.withPackages (
                 p3pkgs: with p3pkgs; [
                   feedparser
+                  looseversion
                   requests
                 ]
               ))

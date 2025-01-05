@@ -15,7 +15,7 @@ import sys
 from collections import OrderedDict
 
 from builtins import iter, len, open, print, sorted
-from distutils.version import LooseVersion
+from looseversion import LooseVersion
 from os.path import abspath, dirname
 from urllib.request import urlopen
 
