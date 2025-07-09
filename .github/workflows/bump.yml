@@ -22,7 +22,7 @@ jobs:
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
         uses: DeterminateSystems/magic-nix-cache-action@v12
       - name: Check Nix flake inputs
-        uses: DeterminateSystems/flake-checker-action@v10
+        uses: DeterminateSystems/flake-checker-action@v11
         with:
           fail-mode: false
       - name: pull dev environment
