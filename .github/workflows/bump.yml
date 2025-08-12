@@ -13,7 +13,7 @@ jobs:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Install Nix via Cachix
         if: env.using_self_hosted_runner_with_nix != 'true'
         uses: cachix/install-nix-action@v31
