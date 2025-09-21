@@ -241,14 +241,14 @@ stdenv.mkDerivation {
 
 
     substituteInPlace $out/share/google/$appname/google-$appname \
-      --replace 'CHROME_WRAPPER' 'WRAPPER'
+      --replace-fail 'CHROME_WRAPPER' 'WRAPPER'
     substituteInPlace $out/share/applications/google-$appname.desktop \
-      --replace /usr/bin/google-chrome-$dist $exe
+      --replace-fail /usr/bin/google-chrome-$dist $exe
     substituteInPlace $out/share/gnome-control-center/default-apps/google-$appname.xml \
-      --replace /opt/google/$appname/google-$appname $exe
+      --replace-fail /opt/google/$appname/google-$appname $exe
     substituteInPlace $out/share/menu/google-$appname.menu \
-      --replace /opt $out/share \
-      --replace $out/share/google/$appname/google-$appname $exe
+      --replace-fail /opt $out/share \
+      --replace-fail $out/share/google/$appname/google-$appname $exe
 
     for icon_file in $out/share/google/chrome*/product_logo_[0-9]*.png; do
       num_and_suffix="''${icon_file##*logo_}"
