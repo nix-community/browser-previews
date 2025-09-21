@@ -246,9 +246,13 @@ stdenv.mkDerivation {
       --replace-fail /usr/bin/google-chrome-$dist $exe
     substituteInPlace $out/share/gnome-control-center/default-apps/google-$appname.xml \
       --replace-fail /opt/google/$appname/google-$appname $exe
-    substituteInPlace $out/share/menu/google-$appname.menu \
-      --replace-fail /opt $out/share \
-      --replace-fail $out/share/google/$appname/google-$appname $exe
+    if [[ -f $out/share/menu/google-$appname.menu ]]; then
+      substituteInPlace $out/share/menu/google-$appname.menu \
+        --replace-fail /opt $out/share \
+        --replace-fail $out/share/google/$appname/google-$appname $exe
+    else
+        echo "share/menu file missing; paths not replaced."
+    fi;
 
     for icon_file in $out/share/google/chrome*/product_logo_[0-9]*.png; do
       num_and_suffix="''${icon_file##*logo_}"
