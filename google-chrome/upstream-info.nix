@@ -9,12 +9,12 @@
   };
   stable = {
     chromedriver = {
-      hash_darwin = "sha256-EUDtj6lAjAmWiCPOIHA7EwNQB4m2zjNAVmNetHdZHco=";
-      hash_darwin_aarch64 = "sha256-i7IwWD/i4jXAJXW4UD6GNRJcvoaIJzmxXRRg7hAbgNg=";
-      hash_linux = "sha256-mLFCpjQrhIEISHak5nR6KRdiZB2QFrEMAXiiSVn7bQM=";
-      version = "141.0.7390.54";
+      hash_darwin = "sha256-h3ZlflcYcB+fE3QOBO+8/xywi8/Mx9RZ2IAId1wF2eY=";
+      hash_darwin_aarch64 = "sha256-CM+1IDBQgjCRv6b6EW09STRxmol8TcPZoByW0m/duqQ=";
+      hash_linux = "sha256-6rzSNPUWu4XO7rk2j2lKO307PyAC038qmG8aISvJ9pY=";
+      version = "141.0.7390.65";
     };
-    hash_deb_amd64 = "sha256-vJMHfwIPf+aM3uj3UlYGo/YxTerNLrVouKNNFApGl48=";
-    version = "141.0.7390.54";
+    hash_deb_amd64 = "sha256-Vdjrfq53R6aPlH3jM3A8qJnlsUJs6mac/r+NAZqWlq0=";
+    version = "141.0.7390.65";
   };
 }
