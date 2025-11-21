@@ -51,3 +51,4 @@ jobs:
           nix flake check --impure
       - name: push to origin
         run: git push
+        continue-on-error: true # PRs shouldn't be failed for lacking this permission
