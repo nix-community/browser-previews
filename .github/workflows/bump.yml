@@ -13,14 +13,14 @@ jobs:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: git checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Install Nix via Cachix
         if: env.using_self_hosted_runner_with_nix != 'true'
         uses: cachix/install-nix-action@v31
         with:
           install_url: "https://releases.nixos.org/nix/nix-2.21.0/install"
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
-        uses: DeterminateSystems/magic-nix-cache-action@v13
+        uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@v12
         with:
