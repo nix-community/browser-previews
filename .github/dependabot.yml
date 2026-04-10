@@ -8,7 +8,11 @@ updates:
     open-pull-requests-limit: 3
     reviewers:
       - r-k-b
+    cooldown:
+      default-days: 10
   - package-ecosystem: "nix"
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 10
