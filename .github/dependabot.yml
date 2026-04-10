@@ -8,3 +8,7 @@ updates:
     open-pull-requests-limit: 3
     reviewers:
       - r-k-b
+  - package-ecosystem: "nix"
+    directory: "/"
+    schedule:
+      interval: "weekly"
