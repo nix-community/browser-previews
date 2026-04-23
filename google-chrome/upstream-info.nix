@@ -1,7 +1,7 @@
 {
   beta = {
-    hash_deb_amd64 = "sha256-uKiONHkRijhuW2m20wa4jNYTT9m8NotyyIg+lxfjgas=";
-    version = "148.0.7778.40";
+    hash_deb_amd64 = "sha256-Abxa3gAa9I6K1r9dkhSl+MpGbwxtWokXZacvRawzNY0=";
+    version = "148.0.7778.56";
   };
   dev = {
     hash_deb_amd64 = "sha256-uYHpayPpWUI1FaS1gDg2yStEuZ02vbtZG791YkozBTE=";
