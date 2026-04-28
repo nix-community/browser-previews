@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Install Nix via Cachix
         if: env.using_self_hosted_runner_with_nix != 'true'
-        uses: cachix/install-nix-action@v31
+        uses: cachix/install-nix-action@ab739621df7a23f52766f9ccc97f38da6b7af14f # v31.10.5
         with:
           install_url: "https://releases.nixos.org/nix/nix-2.21.0/install"
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
