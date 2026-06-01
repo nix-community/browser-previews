@@ -20,7 +20,7 @@ jobs:
         with:
           install_url: "https://releases.nixos.org/nix/nix-2.21.0/install"
       - name: Run the Magic Nix Cache # https://determinate.systems/posts/magic-nix-cache
-        uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+        uses: DeterminateSystems/magic-nix-cache-action@908b263ff629f4cc17666315b7fd3ec127c6244d # v14
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@3164002371bc90729c68af0e24d5aacf20d7c9f6 # v12
         with:
