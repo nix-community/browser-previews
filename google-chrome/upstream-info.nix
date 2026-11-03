@@ -14,7 +14,7 @@
       hash_linux = "sha256-yuWLvSYrpcigziVA9EJUtueJ78T+mxi7tKAEh6n1hZ4=";
       version = "156.0.8078.80";
     };
-    hash_deb_amd64 = "sha256-vhoeFhQZ9cgnJDL2hgkSVQ2OKZheklkT+oAEk6DQyVU=";
-    version = "156.0.8078.79";
+    hash_deb_amd64 = "sha256-pisnfcA9os/1DMBFid62b2h1vjOcBm1GrbSbSe7bYp0=";
+    version = "157.0.8103.38";
   };
 }
